@@ -10,8 +10,7 @@ export default defineConfig({
 <<<<<<< HEAD
          target: "http://localhost:5000 ",
 =======
-         target: "https://note-app-hl37.onrender.com/"
->>>>>>> 462c57c095184f57169822c5d9a300adc314d436
+        
       }
     }
   }
