@@ -66,6 +66,9 @@ const Home = () => {
   // State to disable the form button during submission
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // ✅ UPDATED: Get the API URL from the environment variable
+  const API_URL = import.meta.env.VITE_API_URL;
+
   // Helper to get the auth token
   const getToken = () => localStorage.getItem('token');
 
@@ -88,7 +91,7 @@ const Home = () => {
         return;
       }
 
-      const { data } = await axios.get('/api/notes', {
+      const { data } = await axios.get(`${API_URL}/api/notes`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNotes(data);
@@ -115,7 +118,7 @@ const Home = () => {
       if (editingNoteId) {
         // Update existing note
         await axios.put(
-          `/api/notes/${editingNoteId}`,
+          `${API_URL}/api/notes/${editingNoteId}`,
           { title, description },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -123,7 +126,7 @@ const Home = () => {
       } else {
         // Create new note
         await axios.post(
-          '/api/notes',
+          `${API_URL}/api/notes`,
           { title, description },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -159,7 +162,7 @@ const Home = () => {
     if (!token) return setError('Authentication required');
     
     try {
-      await axios.delete(`/api/notes/${id}`, {
+      await axios.delete(`${API_URL}/api/notes/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       // Filter the deleted note out of the local state

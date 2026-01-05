@@ -26,9 +26,11 @@
 
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors'; // <--- Import this
 import { connectDB } from './config/db.js'; // Corrected import path to assume db.js is in /config
 import authRoutes from './routes/auth.js';
 import noteRoutes from './routes/notes.js';
+
 
 // Load environment variables (like PORT, MONGO_URI)
 dotenv.config();
@@ -36,6 +38,10 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 const app = express();
+app.use(cors({
+    origin: ["https://note-app-smoky-kappa.vercel.app", "http://localhost:5173"], // Allow Vercel & Localhost
+    credentials: true // Important if you use cookies or sessions
+}));
 
 // --- Middleware ---
 app.use(express.json());
