@@ -33,7 +33,7 @@ import noteRoutes from './routes/notes.js';
 // Load environment variables (like PORT, MONGO_URI)
 dotenv.config();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000 || note-app-smoky-kappa.vercel.app;
 
 const app = express();
 
