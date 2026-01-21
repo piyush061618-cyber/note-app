@@ -39,7 +39,7 @@ const PORT = process.env.PORT || 5000 || note-app-smoky-kappa.vercel.app;
 
 const app = express();
 app.use(cors({
-    origin: ["https://note-app-smoky-kappa.vercel.app",
+    origin: ["https://note-app-frontend-theta.vercel.app/",
          "http://localhost:5173"
         ], // Allow Vercel & Localhost
     credentials: true // Important if you use cookies or sessions
