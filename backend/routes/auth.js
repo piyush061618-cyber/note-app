@@ -38,7 +38,7 @@ router.post('/login' ,async(req ,res) =>{
     try{
          const user =await User.findOne({email});
         if(!user || !(await user.matchPassword(password))){
-            res.status(401).json({message: "Invalid credentails"});
+          return res.status(401).json({message: "Invalid credentails"});
         }
          const token = generateToken(user._id);
         res.json({

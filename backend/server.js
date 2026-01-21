@@ -39,12 +39,15 @@ const PORT = process.env.PORT || 5000 || note-app-smoky-kappa.vercel.app;
 
 const app = express();
 app.use(cors({
-    origin: ["https://note-app-smoky-kappa.vercel.app", "http://localhost:5173"], // Allow Vercel & Localhost
+    origin: ["https://note-app-smoky-kappa.vercel.app",
+         "http://localhost:5173"
+        ], // Allow Vercel & Localhost
     credentials: true // Important if you use cookies or sessions
 }));
 
 // --- Middleware ---
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/api/users", authRoutes);
 app.use("/api/notes", noteRoutes);
 
